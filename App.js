@@ -21,15 +21,13 @@
 // });
 
 import React from 'react';
-import { NativeBaseProvider, Box } from 'native-base';
+import { View, Text } from 'react-native';
 
-import Login from './components/Login';
+import RootStack from './components/RootStack';
 
 export default function App() {
   return (
-    <NativeBaseProvider>
-      <Login> </Login>
-    </NativeBaseProvider>
+    <RootStack> </RootStack>
   );
 }
 
