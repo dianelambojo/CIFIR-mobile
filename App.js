@@ -23,11 +23,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-import RootStack from './components/RootStack';
+//import RootStack from './components/RootStack';
+import RootDrawerStack from './drawer/RootDrawerStack';
 
 export default function App() {
   return (
-    <RootStack> </RootStack>
+//    <RootStack> </RootStack>
+    <RootDrawerStack> </RootDrawerStack>
   );
 }
 

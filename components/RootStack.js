@@ -1,12 +1,12 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-
 import SplashComponent from "./SplashComponent";
 import SignInComponent from "./SignInComponent";
+//import HomePageComponent from "./HomePageComponent";
+//import CollectionComponent from "./CollectionComponent";
 
-
-const StackNavigator = createStackNavigator({
+const screens = {
     SplashScreen: {
         screen: SplashComponent,
         navigationOptions:{
@@ -19,8 +19,28 @@ const StackNavigator = createStackNavigator({
             headerShown: false
         }
     },
+//    HomePageScreen: {
+//        screen: HomePageComponent
+//    },
+//    CollectionScreen: {
+//        screen: CollectionComponent
+//    }
+}
 
-});
+const StackNavigator = createStackNavigator(screens);
+
+//const StackNavigator = createStackNavigator(screens, {
+//    defaultNavigationOptions: {
+//        title: "Library",
+//        headerStyle: {
+//            backgroundColor: '#29465B'
+//        },
+//        headerTitleStyle: {
+//            fontWeight: 'bold',
+//            color: 'white'
+//        },
+//    }
+//});
 
 export default createAppContainer (
     StackNavigator
