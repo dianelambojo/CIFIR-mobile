@@ -1,49 +1,51 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class SideMenu extends React.Component {
     render() {
         return (
+            
             <View style={styles.container}>
-
-                <Image source={require('../assets/cifir.jpg')} style={styles.image}/>
+                
+                {/* <Header style={{backgroundColor: '#fff', borderBottomWidth:0}}></Header> */}
+                <Image source={require('../assets/cifirLogo.png')} style={styles.image}/>
 
                 <View style={styles.line} />
                 <Text onPress={() => this.props.navigation.navigate('HomePage')} style={styles.textStyle}>
-                    <FontAwesome name="book" style={styles.icon} size={15}/>  All Books
+                    <FontAwesome name="book" style={styles.icon} size={20}/>  All Books
                 </Text>
                 <Text onPress={() => this.props.navigation.navigate('Collections')} style={styles.textStyle}>
-                    <FontAwesome name="archive" style={styles.icon} size={15}/>  Collections
+                    <FontAwesome name="archive" style={styles.icon} size={20}/>  Collections
                 </Text>
                 <Text onPress={() => this.props.navigation.navigate('Audiobooks')} style={styles.textStyle}>
-                    <FontAwesome name="headphones" style={styles.icon} size={15}/>  Audiobooks
+                    <FontAwesome name="headphones" style={styles.icon} size={20}/>  Audiobooks
                 </Text>
                 <Text
                     onPress={() => this.props.navigation.navigate('NetworkLibraries')} style={styles.textStyle}>
-                    <FontAwesome name="globe" style={styles.icon} size={15}/>  NetworkLibraries
+                    <FontAwesome name="globe" style={styles.icon} size={20}/>  NetworkLibraries
                 </Text>
 
                 <View style={styles.line} />
                 <Text onPress={() => this.props.navigation.navigate('Favorites')} style={styles.textStyle}>
-                    <FontAwesome name="star-o" style={styles.icon} size={15}/>  Favorites
+                    <FontAwesome name="star-o" style={styles.icon} size={20}/>  Favorites
                 </Text>
                 <Text onPress={() => this.props.navigation.navigate('ToRead')} style={styles.textStyle}>
-                    <FontAwesome name="clock-o" style={styles.icon} size={15}/>  To Read
+                    <FontAwesome name="clock-o" style={styles.icon} size={20}/>  To Read
                 </Text>
                 <Text onPress={() => this.props.navigation.navigate('HaveRead')} style={styles.textStyle}>
-                    <FontAwesome name="check-square-o" style={styles.icon} size={15}/>  Have Read
+                    <FontAwesome name="check-square-o" style={styles.icon} size={20}/>  Have Read
                 </Text>
 
                 <View style={styles.line} />
                 <Text onPress={() => this.props.navigation.navigate('Trash')} style={styles.textStyle}>
-                    <FontAwesome name="trash-o" style={styles.icon} size={15}/>  Trash
+                    <FontAwesome name="trash-o" style={styles.icon} size={20}/>  Trash
                 </Text>
                 <Text onPress={() => this.props.navigation.navigate('Settings')} style={styles.textStyle}>
-                    <FontAwesome name="cog" style={styles.icon} size={15}/>  Settings
+                    <FontAwesome name="cog" style={styles.icon} size={20}/>  Settings
                 </Text>
                 <Text onPress={() => this.props.navigation.navigate('SendFeedback')} style={styles.textStyle}>
-                    <FontAwesome name="comments" style={styles.icon} size={15}/>  Send Feedback
+                    <FontAwesome name="comments" style={styles.icon} size={20}/>  Send Feedback
                 </Text>
                 <Text style={styles.logout}>
                     Logout
@@ -66,12 +68,13 @@ var styles = StyleSheet.create({
     },
     textStyle: {
         paddingBottom: 15,
-        marginLeft: 10,
+        marginLeft: 20,
         fontWeight: 'bold',
-        fontSize: 15,
+        fontSize: 20,
+        color: '#1B2F4B',
     },
     icon: {
-        color: 'maroon'
+        color: '#D83A3A'
     },
     line: {
         borderBottomColor: 'darkgrey',
