@@ -10,37 +10,41 @@ export default class SplashComponent extends React.Component {
     render(){
         return(
         <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+            <StatusBar backgroundColor='#fff' barStyle="light-content"/>
             <View style={styles.header}>
                 <Animatable.Image 
                     animation="bounceIn"
                     duraton="1500"
-                source={require('../assets/cifirLogo.png')}
+                source={require('../assets/CIFIR_Logo.png')}
                 style={styles.logo}
                 resizeMode="stretch"
                 />
             </View>
-            <Animatable.View 
-            style={styles.footer}
-            animation="fadeInUpBig">
-                <Text style={styles.title}>Read with us! char</Text>
-                <Text style={styles.text}>Sign in</Text>
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignInScreen')}>
-                    <LinearGradient
-                        colors={['#08d4c4', '#01ab9d']}
-                        style={styles.signIn}
-                    >
-                    <Text style={styles.textSign}>Get Started</Text>
-                    <MaterialIcons 
-                        name="navigate-next"
-                        color="#fff"
-                        size={20}
-                    />
-                    </LinearGradient>
-                    </TouchableOpacity>
-                </View>
-            </Animatable.View>
+            <LinearGradient
+                colors={['#E2454F', '#ED8854']}
+                style={styles.footer}
+                >
+                <Animatable.View 
+                animation="fadeInUpBig">
+                    <Text style={styles.title}>Read EPUB and PDF files on the go!</Text>
+                    <Text style={styles.text}>Sign in with account</Text>
+                    <View style={styles.button}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignInScreen')}>
+                        <LinearGradient
+                            colors={['#FFF', '#E7E7E7']}
+                            style={styles.signIn}
+                        >
+                        <Text style={styles.textSign}>Get Started</Text>
+                        <MaterialIcons 
+                            name="navigate-next"
+                            color="#E2454F"
+                            size={20}
+                        />
+                        </LinearGradient>
+                        </TouchableOpacity>
+                        </View>
+                    </Animatable.View>
+                </LinearGradient>
         </View>
 
 
@@ -56,7 +60,7 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#009387'
+      backgroundColor: '#fff'
     },
     header: {
         flex: 2,
@@ -65,7 +69,6 @@ const styles = StyleSheet.create({
     },
     footer: {
         flex: 1,
-        backgroundColor: '#fff',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         paddingVertical: 50,
@@ -76,13 +79,14 @@ const styles = StyleSheet.create({
         height: height_logo
     },
     title: {
-        color: '#009387',
+        color: '#fff',
         fontWeight: 'bold',
         fontSize: 30
     },
     text: {
-        color: 'grey',
-        marginTop:5
+        color: '#F0A097',
+        marginTop:5,
+        fontWeight: 'bold',
     },
     button: {
         alignItems: 'flex-end',
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     textSign: {
-        color: 'white',
+        color: '#E2454F',
         fontWeight: 'bold'
     }
 

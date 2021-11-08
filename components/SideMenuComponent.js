@@ -12,7 +12,7 @@ const SideMenu = () => {
             <View style={styles.container}>
                 
                 {/* <Header style={{backgroundColor: '#fff', borderBottomWidth:0}}></Header> */}
-                <Image source={require('../assets/cifirLogo.png')} style={styles.image}/>
+                <Image source={require('../assets/CIFIR_Logo.png')} style={styles.image}/>
 
                 <View style={styles.line} />
                 <Text onPress={() => this.props.navigation.navigate('HomePage')} style={styles.textStyle}>
@@ -69,6 +69,10 @@ const styles = StyleSheet.create({
         width: 'auto',
         height: '9%',
         marginBottom: 10,
+        resizeMode: "contain",
+        height: 100,
+        width: 200,
+
     },
     textStyle: {
         paddingBottom: 15,
