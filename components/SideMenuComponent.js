@@ -2,8 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-export default class SideMenu extends React.Component {
-    render() {
+import { AuthContext } from './context';
+
+const SideMenu = () => {
+
+    const { signOut } = React.useContext(AuthContext);
         return (
             
             <View style={styles.container}>
@@ -47,15 +50,16 @@ export default class SideMenu extends React.Component {
                 <Text onPress={() => this.props.navigation.navigate('SendFeedback')} style={styles.textStyle}>
                     <FontAwesome name="comments" style={styles.icon} size={20}/>  Send Feedback
                 </Text>
-                <Text style={styles.logout}>
-                    Logout
+
+                <Text  style={styles.logout}  onPress={() => {signOut()}}>
+                    <FontAwesome name="sign-out" style={styles.icon} size={20}/>  Logout
                 </Text>
             </View>
         );
-    }
 }
+export default SideMenu;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#FFF',
@@ -83,8 +87,8 @@ var styles = StyleSheet.create({
         margin: 10,
     },
     logout: {
-        left: 200,
-        top: 120,
+        left: 25,
+        top: 50,
         fontWeight: 'bold',
         fontSize: 18,
     },

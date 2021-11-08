@@ -14,40 +14,66 @@ import {LinearGradient} from 'expo-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
+import { AuthContext } from './context';
 
+const SignInComponent = () => {
 
-export default class SignInComponent extends React.Component{
+    const [data, setData] = React.useState({
+        username: '',
+        password: '',
+        check_textInputChange: false,
+        secureTextEntry: true,
+        // isValidUser: true,
+        // isValidPassword: true,
+    });
 
-    constructor(props){
-        super(props);
-        this.state={
-            check_textInputChange: false,
-            password: '',
-            secureTextEntry: true
-        }
-    }
+    const { signIn } = React.useContext(AuthContext);
 
-    textInputChange(value){
+    const textInputChange = (value) => {
         if(value.length!==0){
-            this.setState({
+            setData({
+                ...data,
+                username: value,
                 check_textInputChange: true
             });
         }
 
         else{
-            this.setState({
+            setData({
+                ...data,
+                username: value,
                 check_textInputChange: false
-            })
+            });
         }
     }
 
-    secureTextEntry(){
-        this.setState({
-            secureTextEntry: !this.state.secureTextEntry
-        })
+    const handlePasswordChange = (val) => {
+        if( val.trim().length >= 8 ) {
+            setData({
+                ...data,
+                password: val,
+                isValidPassword: true
+            });
+        } else {
+            setData({
+                ...data,
+                password: val,
+                isValidPassword: false
+            });
+        }
     }
 
-    render(){
+
+    const updateSecureTextEntry = () => {
+        setData({
+            ...data,
+            secureTextEntry: !data.secureTextEntry
+        });
+    }
+
+    const loginHandle = (username, password) => {
+        signIn(username,password);
+    }
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -65,9 +91,9 @@ export default class SignInComponent extends React.Component{
                         <TextInput 
                             placeholder="Your email"
                             style={styles.textInput}
-                            onChangeText={(text) => this.textInputChange(text)}
+                            onChangeText={(text) => textInputChange(text)}
                         />
-                        {this.state.check_textInputChange ?
+                        {data.check_textInputChange ?
                         <Animatable.View
                             animation="bounceIn" >
                             <Feather
@@ -88,30 +114,24 @@ export default class SignInComponent extends React.Component{
                             color="black"
                             size={20}
                         />
-                        {this.state.secureTextEntry ?
+                        {data.secureTextEntry ?
                         <TextInput 
                             placeholder="Your password"
-                            secureTextEntry={true}
+                            secureTextEntry={data.secureTextEntry ? true: false }
                             style={styles.textInput}
-                            value={this.state.password}
-                            onChangeText={(text) => this.setState({
-                                password:text
-                            })}
+                            onChangeText={(text) => handlePasswordChange(text)}
 
                         />
                         :
                         <TextInput 
                             placeholder="Your password"
                             style={styles.textInput}
-                            value={this.state.password}
-                            onChangeText={(text) => this.setState({
-                                password:text
-                            })}
+                            onChangeText={(text) => handlePasswordChange(text)}
                         ></TextInput>
                         }
                         <TouchableOpacity
-                            onPress={() => this.secureTextEntry()}>
-                            {this.state.secureTextEntry ? 
+                            onPress={updateSecureTextEntry}>
+                            {data.secureTextEntry ? 
                             <Feather 
                                 name="eye-off"
                                 color="gray"
@@ -128,24 +148,28 @@ export default class SignInComponent extends React.Component{
                     </View>
                     <Text style={{color: '#009387', marginTop:15}}>Forgot password?</Text>
                     <View style={styles.button}>
-                        <LinearGradient
-                            colors={['#08d4c4', '#01ab9d']}
+                        <TouchableOpacity
                             style={styles.signIn}
-                        >
-                         <Text style={[styles.textSign, {
-                                color:'#fff'
-                            }]}>Sign In</Text>
-                        </LinearGradient>
+                            onPress={() => {loginHandle(data.username, data.password)}}>
+                            <LinearGradient
+                                colors={['#08d4c4', '#01ab9d']}
+                                style={styles.signIn}
+                            >
+                            <Text style={[styles.textSign, {
+                                    color:'#fff'
+                                }]}>Sign In</Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
                     </View>
                 </Animatable.View>
             </View>
         )
-    }
+    
 
 }
+export default SignInComponent;
 
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     
     container: {
       flex: 1, 

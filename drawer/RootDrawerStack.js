@@ -35,6 +35,8 @@ const RootDrawerNavigation = createDrawerNavigator({
     SendFeedback: {
         screen: drawerStack.SendFeedbackStack,
     },
+    
+
 }, {
     contentComponent: SideMenuComponent,
 });

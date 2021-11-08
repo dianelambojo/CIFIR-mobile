@@ -15,7 +15,7 @@ export default class SplashComponent extends React.Component {
                 <Animatable.Image 
                     animation="bounceIn"
                     duraton="1500"
-                source={require('../assets/logo.png')}
+                source={require('../assets/cifirLogo.png')}
                 style={styles.logo}
                 resizeMode="stretch"
                 />
