@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         color: '#1B2F4B',
     },
     icon: {
-        color: '#D83A3A'
+        color: '#E2454F'
     },
     line: {
         borderBottomColor: 'darkgrey',

@@ -19,8 +19,9 @@ const screens = {
 const StackNavigator = createStackNavigator(screens, {
     defaultNavigationOptions: {
 //        title: "Library",
+        
         headerStyle: {
-            backgroundColor: '#2B353B'
+            backgroundColor: '#E2454F'
         },
         headerTitleStyle: {
             fontWeight: 'bold',
