@@ -70,21 +70,22 @@ const App = () => {
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
 
   const authContext = React.useMemo(() => ({
-    signIn: async (userName, password) => {
+    signIn: async (foundUser) => {
       // setUserToken('fkjg');
       // setIsLoading(false);
       // FETCH THRU API CALL
-      let userToken;
-      userToken = null;
-      if ( userName == 'user' && password == 'pass') {
+      
+      const userToken = String(foundUser[0].userToken);
+      const userName = foundUser[0].email;
+
+      // if ( userName == 'user' && password == 'password') {
         try {
-          userToken = 'hshshs';
           await AsyncStorage.setItem('userToken', userToken)
         }
         catch(e) {
           console.log(e);
         }
-      }
+      //}
       dispatch({ type: 'LOGIN', id: userName, token: userToken });
     },
     signOut: async() => {

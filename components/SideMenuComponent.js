@@ -4,7 +4,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import { AuthContext } from './context';
 
-const SideMenu = () => {
+const SideMenu = ({ navigation }) => {
 
     const { signOut } = React.useContext(AuthContext);
         return (
@@ -15,39 +15,39 @@ const SideMenu = () => {
                 <Image source={require('../assets/CIFIR_Logo.png')} style={styles.image}/>
 
                 <View style={styles.line} />
-                <Text onPress={() => this.props.navigation.navigate('HomePage')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('HomePage')} style={styles.textStyle}>
                     <FontAwesome name="book" style={styles.icon} size={20}/>  All Books
                 </Text>
-                <Text onPress={() => this.props.navigation.navigate('Collections')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('Collections')} style={styles.textStyle}>
                     <FontAwesome name="archive" style={styles.icon} size={20}/>  Collections
                 </Text>
-                <Text onPress={() => this.props.navigation.navigate('Audiobooks')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('Audiobooks')} style={styles.textStyle}>
                     <FontAwesome name="headphones" style={styles.icon} size={20}/>  Audiobooks
                 </Text>
                 <Text
-                    onPress={() => this.props.navigation.navigate('NetworkLibraries')} style={styles.textStyle}>
+                    onPress={() => navigation.navigate('NetworkLibraries')} style={styles.textStyle}>
                     <FontAwesome name="globe" style={styles.icon} size={20}/>  NetworkLibraries
                 </Text>
 
                 <View style={styles.line} />
-                <Text onPress={() => this.props.navigation.navigate('Favorites')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('Favorites')} style={styles.textStyle}>
                     <FontAwesome name="star-o" style={styles.icon} size={20}/>  Favorites
                 </Text>
-                <Text onPress={() => this.props.navigation.navigate('ToRead')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('ToRead')} style={styles.textStyle}>
                     <FontAwesome name="clock-o" style={styles.icon} size={20}/>  To Read
                 </Text>
-                <Text onPress={() => this.props.navigation.navigate('HaveRead')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('HaveRead')} style={styles.textStyle}>
                     <FontAwesome name="check-square-o" style={styles.icon} size={20}/>  Have Read
                 </Text>
 
                 <View style={styles.line} />
-                <Text onPress={() => this.props.navigation.navigate('Trash')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('Trash')} style={styles.textStyle}>
                     <FontAwesome name="trash-o" style={styles.icon} size={20}/>  Trash
                 </Text>
-                <Text onPress={() => this.props.navigation.navigate('Settings')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('Settings')} style={styles.textStyle}>
                     <FontAwesome name="cog" style={styles.icon} size={20}/>  Settings
                 </Text>
-                <Text onPress={() => this.props.navigation.navigate('SendFeedback')} style={styles.textStyle}>
+                <Text onPress={() => navigation.navigate('SendFeedback')} style={styles.textStyle}>
                     <FontAwesome name="comments" style={styles.icon} size={20}/>  Send Feedback
                 </Text>
 
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     logout: {
-        left: 25,
-        top: 50,
+        left: 150,
+        top: 10,
         fontWeight: 'bold',
         fontSize: 18,
     },

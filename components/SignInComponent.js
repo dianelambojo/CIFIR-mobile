@@ -16,6 +16,8 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import { AuthContext } from './context';
 
+import Users from './users';
+
 const SignInComponent = () => {
 
     const [data, setData] = React.useState({
@@ -23,18 +25,19 @@ const SignInComponent = () => {
         password: '',
         check_textInputChange: false,
         secureTextEntry: true,
-        // isValidUser: true,
-        // isValidPassword: true,
+        isValidUser: true,
+        isValidPassword: true,
     });
 
     const { signIn } = React.useContext(AuthContext);
 
     const textInputChange = (value) => {
-        if(value.length!==0){
+        if(value.length >= 4){
             setData({
                 ...data,
                 username: value,
-                check_textInputChange: true
+                check_textInputChange: true,
+                isValidUser: true
             });
         }
 
@@ -42,7 +45,8 @@ const SignInComponent = () => {
             setData({
                 ...data,
                 username: value,
-                check_textInputChange: false
+                check_textInputChange: false,
+                isValidUser: false
             });
         }
     }
@@ -71,8 +75,39 @@ const SignInComponent = () => {
         });
     }
 
-    const loginHandle = (username, password) => {
-        signIn(username,password);
+    const handleValidUser = (val) => {
+        if( val.trim().length >= 4 ) {
+            setData({
+                ...data,
+                isValidUser: true
+            });
+        } else {
+            setData({
+                ...data,
+                isValidUser: false
+            });
+        }
+    }
+
+    const loginHandle = (userName, password) => {
+        const foundUser = Users.filter( item => {
+            return userName == item.email && password == item.password;
+        });
+
+        if ( data.username.length == 0 || data.password.length == 0 ) {
+            Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+                {text: 'Okay'}
+            ]);
+            return;
+        }
+
+        if ( foundUser.length == 0 ) {
+            Alert.alert('Invalid User!', 'Username or password is incorrect.', [
+                {text: 'Okay'}
+            ]);
+            return;
+        }
+        signIn(foundUser);
     }
         return (
             <View style={styles.container}>
@@ -85,7 +120,7 @@ const SignInComponent = () => {
                 >
                     <Animatable.View 
                         animation="fadeInUpBig" style={styles.footer}>
-                        <Text style={styles.text_footer}>E-MAIL</Text>
+                        <Text style={styles.text_footer}>Username</Text>
                         <View style={styles.action}>
                             <FontAwesome
                                 name="user"
@@ -93,21 +128,29 @@ const SignInComponent = () => {
                                 size={20}
                             />
                             <TextInput 
-                                placeholder="Your email"
+                                placeholder="Your username"
                                 style={styles.textInput}
                                 onChangeText={(text) => textInputChange(text)}
+                                onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)}
+
                             />
                             {data.check_textInputChange ?
                             <Animatable.View
                                 animation="bounceIn" >
                                 <Feather
                                     name="check-circle"
-                                    color="#8EE56F"
+                                    color="#fff"
                                     size={20}
                                 />
                             </Animatable.View>
                             : null}
                         </View>
+
+                        { data.isValidUser ? null : 
+                            <Animatable.View animation="fadeInLeft" duration={500}>
+                            <Text style={styles.errorMsg}>Username must be 4 characters long.</Text>
+                            </Animatable.View>
+                        }
 
                         <Text style={[styles.text_footer, {
                             marginTop: 35
@@ -138,18 +181,23 @@ const SignInComponent = () => {
                                 {data.secureTextEntry ? 
                                 <Feather 
                                     name="eye-off"
-                                    color="#EC8275"
+                                    color="#fff"
                                     size={20}
                                 />
                                 :
                                 <Feather 
                                     name="eye"
-                                    color="#EC8275"
+                                    color="#fff"
                                     size={20}
                                 />
                                 }
                             </TouchableOpacity>
                         </View>
+                        { data.isValidPassword ? null : 
+                            <Animatable.View animation="fadeInLeft" duration={500}>
+                            <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
+                            </Animatable.View>
+                        }
                         <Text style={{color: '#E7E7E7', marginTop:15}}>Forgot password?</Text>
                         <View style={styles.button}>
                             <TouchableOpacity
@@ -224,7 +272,7 @@ const styles = StyleSheet.create({
         color: '#FFEDEB'
     },
     errorMsg: {
-        color: '#FF0000',
+        color: '#FFFFFF',
         fontSize: 14
     },
     button: {
