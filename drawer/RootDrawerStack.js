@@ -1,42 +1,39 @@
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
-
 import SideMenuComponent from '../components/SideMenuComponent';
-import * as drawerStack from './index.js';
+import * as pageComponentStack from './ComponentStack';
 
 const RootDrawerNavigation = createDrawerNavigator({
-    HomePage: {
-        screen: drawerStack.HomePageStack,
-    },
-    Collections: {
-        screen: drawerStack.CollectionStack,
-    },
-    Audiobooks: {
-        screen: drawerStack.AudioBookStack,
-    },
-    NetworkLibraries: {
-        screen: drawerStack.NetworkLibraryStack,
-    },
-    Favorites: {
-        screen: drawerStack.FavoriteStack,
-    },
-    ToRead: {
-        screen: drawerStack.ToReadStack,
-    },
-    HaveRead: {
-        screen: drawerStack.HaveReadStack,
-    },
-    Trash: {
-        screen: drawerStack.TrashStack,
-    },
-    Settings: {
-        screen: drawerStack.SettingStack,
-    },
-    SendFeedback: {
-        screen: drawerStack.SendFeedbackStack,
-    },
-    
-
+      HomePage: {
+        screen: pageComponentStack.HomeStackNavigator,
+      },
+      Collections: {
+          screen: pageComponentStack.CollectionStackNavigator,
+      },
+      Audiobooks: {
+          screen: pageComponentStack.AudioBookStackNavigator,
+      },
+      NetworkLibraries: {
+          screen: pageComponentStack.NetworkLibraryStackNavigator,
+      },
+      Favorites: {
+          screen: pageComponentStack.FavoritesStackNavigator,
+      },
+      ToRead: {
+          screen: pageComponentStack.ToReadStackNavigator,
+      },
+      HaveRead: {
+          screen: pageComponentStack.HaveReadStackNavigator,
+      },
+      Trash: {
+          screen: pageComponentStack.TrashStackNavigator,
+      },
+      Settings: {
+          screen: pageComponentStack.SettingsStackNavigator,
+      },
+      SendFeedback: {
+          screen: pageComponentStack.SendFeedbackStackNavigator,
+      },
 }, {
     contentComponent: SideMenuComponent,
 });
