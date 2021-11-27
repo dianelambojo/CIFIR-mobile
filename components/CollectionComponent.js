@@ -21,7 +21,11 @@ export default class CollectionComponent extends React.Component {
             },
             {
                 name: "Folder 2"
-            }
+            },
+            {
+                name: "Folder 3"
+            },
+
 
         ];
         this.setState({
@@ -41,24 +45,16 @@ export default class CollectionComponent extends React.Component {
                     data={this.state.dataSource}
                     renderItem={({item,index}) =>{
                         return (
-                            <View style={styles.containerfolders}>
-                                <View style={styles.row}>
+                                <View style={styles.containerfolders}>
+                                        <FontAwesome name="folder" style={styles.folder} size={80}/> 
+                                        <Text styles={styles.foldertitle} numberOfLines={1}>{item.name}</Text>
 
-                                    <FontAwesome name="folder" style={styles.folder} size={80}/> 
-
-
-                                    {/* <Text numberOfLines={1} style={styles.title}>{item.name}</Text> */}
-                                    
-                                    {/* <View style={styles.containerplusbutton}>
-                                        <TouchableOpacity>
-                                            <FontAwesome name="plus" style={styles.plus} size={30}/>
-                                        </TouchableOpacity>
-                                    </View> */}
-
-
+                                        {/* <View style={styles.containerplusbutton}>
+                                            <TouchableOpacity>
+                                                <FontAwesome name="plus" style={styles.plus} size={30}/>
+                                            </TouchableOpacity>
+                                        </View> */}
                                 </View>
-                                
-                            </View>
                         );
                     }}
                     
@@ -72,30 +68,28 @@ export default class CollectionComponent extends React.Component {
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF'
-    },
-    row: {
-        flexDirection: 'row',
-    },
-    textStyle: {
-        marginTop: 25,
-        marginRight: 15,
-        marginLeft: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    folder:{
-        marginTop: 20,
-        marginRight: 15,
-        marginLeft: 20,
-        color: '#ffd958',
     },
     containerfolders:{
+        marginRight: 20,
+        marginLeft: 20,
+        marginBottom: 10,
+        padding: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    folder:{
+        color: '#ffd958',
+        width: 90,
+        height: 90,
+        marginBottom: -10,
+    },
+    foldertitle:{
+        alignSelf: 'flex-start',
+        transform: [{ translateY: 5 }], 
+    },
+    containerplusbutton:{
         padding: 10,
         paddingTop:5,
-    },
-    row: {
-        flexDirection: 'row',
     },
     plus:{
         marginTop: 40,
@@ -103,14 +97,4 @@ var styles = StyleSheet.create({
         marginLeft: 20,
         color: '#E2454F',
     },
-    containerplusbutton:{
-        padding: 10,
-        paddingTop:5,
-    },
-    title:{
-        fontSize: 14,
-        color: '#000',
-        alignContent: 'center',
-        marginTop: 100,
-    },  
 });
