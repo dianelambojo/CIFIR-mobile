@@ -80,7 +80,8 @@ export default class HomePageComponent extends React.Component {
                 <View>
                     <Text>Continue Reading</Text>
                 </View>
-
+                
+                {/* Display Books*/}
                 <FlatList
                     data={this.state.dataSource}
                     ItemSeparatorComponent = {() => this.separator()}
@@ -159,5 +160,7 @@ var styles = StyleSheet.create({
     },
     icon:{
         color: 'white',
-    }
+    },
+    
+
 });
