@@ -1,11 +1,29 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { 
+    View, 
+    Text, 
+    TouchableOpacity, 
+    TextInput,
+    Platform,
+    StyleSheet ,
+    StatusBar,
+    Alert
+} from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
+
+
 
 export default class SettingsComponent extends React.Component {
     render(){
         return (
             <View style={styles.container}>
-                <Text> Settings Screen </Text>
+                <Text> Account Settings </Text>
+                    <View style={styles.passwordContainer}>
+                        <Text> Password </Text>        
+                        <TextInput placeholder="Your password" style={styles.textInput}/>
+                    </View>
             </View>
         )
     }
@@ -13,7 +31,11 @@ export default class SettingsComponent extends React.Component {
 
 var styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#FFF'
+        flex: 1,
+        backgroundColor: '#FFF'
     },
+    passwordContainer:{
+        marginTop: 35,
+        marginLeft: 35,
+    }
 });
