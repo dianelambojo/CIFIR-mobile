@@ -51,14 +51,17 @@ export default class AudioBookComponent extends React.Component {
                     
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
-                        return (<View style={styles.bookContainer}>
-                            <Image style={styles.image}source={item.img}/>
-                            <View style ={styles.dataContainer}>
-                                <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
-                                <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
-                                <Text style={styles.author}>{item.author}</Text>
-                            </View>
-                        </View>
+                        return (
+                            <TouchableOpacity>
+                                <View style={styles.bookContainer}>
+                                    <Image style={styles.image}source={item.img}/>
+                                    <View style ={styles.dataContainer}>
+                                        <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
+                                        <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
+                                        <Text style={styles.author}>{item.author}</Text>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
                         );
                     }}
                     />
