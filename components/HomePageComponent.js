@@ -86,14 +86,17 @@ export default class HomePageComponent extends React.Component {
                     data={this.state.dataSource}
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
-                        return (<View style={styles.bookContainer}>
-                            <Image style={styles.image}source={item.img}/>
-                            <View style ={styles.dataContainer}>
-                                <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
-                                <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
-                                <Text style={styles.author}>{item.author}</Text>
-                            </View>
-                        </View>
+                        return (
+                            <TouchableOpacity>
+                                <View style={styles.bookContainer}>
+                                    <Image style={styles.image}source={item.img}/>
+                                        <View style ={styles.dataContainer}>
+                                            <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
+                                            <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
+                                            <Text style={styles.author}>{item.author}</Text>
+                                        </View>
+                                </View>
+                            </TouchableOpacity>
                         );
                     }}
                     />

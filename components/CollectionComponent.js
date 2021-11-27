@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Platform, StyleSheet, Image, Pressable, Dimensions, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Platform, StyleSheet, Image, Pressable, Dimensions, Button,onPress} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {FlatList} from 'react-native-gesture-handler';
 
@@ -37,24 +37,24 @@ export default class CollectionComponent extends React.Component {
         console.disableYellowBox = true;
         return (
             <View style={styles.container}>
-                <View>
-                    <Text>Collection Page</Text>
-                </View>
+                    <TouchableOpacity onPress={onPress}>
+                        <View style={styles.containerbutton}>
+                            <View style={styles.button}>
+                                <Text style={styles.collectiontext}>New folder   <FontAwesome name="plus" style={styles.icon} size={14}/> </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
                 <FlatList
                     numColumns={3}
                     data={this.state.dataSource}
                     renderItem={({item,index}) =>{
                         return (
-                                <View style={styles.containerfolders}>
-                                        <FontAwesome name="folder" style={styles.folder} size={80}/> 
-                                        <Text styles={styles.foldertitle} numberOfLines={1}>{item.name}</Text>
-
-                                        {/* <View style={styles.containerplusbutton}>
-                                            <TouchableOpacity>
-                                                <FontAwesome name="plus" style={styles.plus} size={30}/>
-                                            </TouchableOpacity>
-                                        </View> */}
-                                </View>
+                                <TouchableOpacity onPress={onPress}>
+                                    <View style={styles.containerfolders}>
+                                            <FontAwesome name="folder" style={styles.folder} size={80}/> 
+                                            <Text styles={styles.foldertitle} numberOfLines={1}>{item.name}</Text>
+                                    </View>
+                                </TouchableOpacity>
                         );
                     }}
                     
@@ -87,14 +87,22 @@ var styles = StyleSheet.create({
         alignSelf: 'flex-start',
         transform: [{ translateY: 5 }], 
     },
-    containerplusbutton:{
-        padding: 10,
-        paddingTop:5,
+    containerbutton:{
+        backgroundColor: '#E2454F',
+        width: 150,
+        height: 40,
+        marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 250,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    plus:{
-        marginTop: 40,
-        marginRight: 20,
-        marginLeft: 20,
-        color: '#E2454F',
+    collectiontext:{
+        textAlign: 'center',
+        fontSize: 14,
+        fontFamily:'roboto',
+        fontWeight: 'bold',
+        color: '#fff',
     },
 });
