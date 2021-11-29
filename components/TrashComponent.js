@@ -44,10 +44,9 @@ export default class TrashComponent extends React.Component {
         console.disableYellowBox = true;
         return (
             <View style={styles.container}>
-                <Text> Trash Screen </Text>
+                {/* Trash Books */}
                 <FlatList
                     data={this.state.dataSource}
-                    
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
                         return (

@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Platform, StyleSheet, Pressable, Button, SafeAreaView,Image, Dimensions } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, Platform, StyleSheet, Pressable, Button, SafeAreaView,Image, ScrollView } from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
 
 const {width,height}= Dimensions.get("window");
 
@@ -73,33 +71,74 @@ export default class HomePageComponent extends React.Component {
         console.disableYellowBox = true;
         return (
             <View style={styles.container}>
+
+                {/* Navigation Books & Collections*/}
                 <View style={styles.row}>
-                    <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('HomePage')}>Books</Text>
-                    <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('Collections')}>Collections</Text>
-                </View>
-                <View>
-                    <Text>Continue Reading</Text>
+                    <View style={styles.homebooks}>
+                        <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('HomePage')}>Books</Text>
+                    </View>
+                    <View style={styles.collectionbooks}>
+                        <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('Collections')}>Collections</Text>
+                    </View>
                 </View>
                 
-                {/* Display Books*/}
-                <FlatList
-                    data={this.state.dataSource}
-                    ItemSeparatorComponent = {() => this.separator()}
-                    renderItem={({item,index}) =>{
-                        return (
-                            <TouchableOpacity>
-                                <View style={styles.bookContainer}>
-                                    <Image style={styles.image}source={item.img}/>
+                {/* My Library */}
+                    <View>
+                        <Text style={styles.mylibraryText}>My Library</Text>
+                    </View>
+                    <ScrollView>
+                    <FlatList
+                        style={styles.flatlistTop}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        data={this.state.dataSource}
+                        
+                        renderItem={({item,index}) =>{
+                            return (
+                                <TouchableOpacity>
+                                    <View style={styles.bookContainer}>
+                                        <Image style={styles.imageTop}source={item.img}/>
+                                            {/* <View style ={styles.dataContainer}>
+                                                <Image style={styles.image}source={item.img}/>
+                                                <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
+                                                <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
+                                                <Text style={styles.author}>{item.author}</Text>
+                                            </View> */}
+                                    </View>
+                                    
+                                </TouchableOpacity>
+                                
+                            );
+                        }}
+                        />
+
+                        {/* Recently Added*/}
+                        <View>
+                            <Text style={styles.recentlyaddedText}>Recently Added </Text>
+                        </View>
+
+                        <FlatList
+                        style={styles.flatlistBottom}
+                        data={this.state.dataSource}
+                        ItemSeparatorComponent = {() => this.separator()}
+                        renderItem={({item,index}) =>{
+                            return (
+                                <TouchableOpacity>
+                                    <View style={styles.bookContainer}>
+                                        <Image style={styles.imageBottom}source={item.img}/>
                                         <View style ={styles.dataContainer}>
                                             <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
                                             <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
                                             <Text style={styles.author}>{item.author}</Text>
                                         </View>
-                                </View>
-                            </TouchableOpacity>
-                        );
-                    }}
-                    />
+                                    </View>
+                                </TouchableOpacity>
+                            );
+                        }}
+                        />
+                </ScrollView>
+
+                {/* Add button*/}
                 <TouchableOpacity style={styles.floatingActionButton}>
                     <FontAwesome name="plus" style={styles.icon} size={20}/>
                 </TouchableOpacity>
@@ -118,20 +157,27 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
     },
     textStyle: {
-        marginTop: 25,
-        marginRight: 15,
-        marginLeft: 20,
+        padding: 5,
         fontSize: 20,
         fontWeight: 'bold',
-        borderBottomColor: 'red'
+        color: '#E2454F',
+
     },
     bookContainer:{
         flexDirection:'row',
         padding: 5,
     },
-    image: {
+    imageTop: {
+        width: 180,
+        height: 250,
+        borderRadius: 20,
+        resizeMode: 'cover',
+    },
+    imageBottom: {
         width: 90,
         height: 150,
+        borderRadius: 5,
+        resizeMode: 'cover',
     },
     dataContainer:{
         padding: 10,
@@ -141,7 +187,7 @@ var styles = StyleSheet.create({
     title:{
         fontSize: 17,
         fontWeight: 'bold',
-        color: '#000',
+        color: '#1B2F4B',
     },
     description:{
         fontSize: 13,
@@ -164,6 +210,41 @@ var styles = StyleSheet.create({
     icon:{
         color: 'white',
     },
-    
+    homebooks:{
+        backgroundColor: 'white',
+        width: 210,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderTopRightRadius: 10,
+    },
+    collectionbooks:{
+        backgroundColor: '#F5F5F5',
+        width: 210,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderBottomLeftRadius: 10,
+    },
+    mylibraryText:{
+        paddingTop: 15,
+        paddingLeft: 15,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#1B2F4B',
+    },
+    recentlyaddedText:{
+        paddingTop: 15,
+        paddingLeft: 15,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'gray',
+    },
+    flatlistTop:{
+        marginTop: 5,
+    },
+    flatlistBottom:{
+        marginTop: 5,
+    }
 
 });

@@ -45,10 +45,9 @@ export default class HaveReadComponent extends React.Component {
         console.disableYellowBox = true;
         return (
             <View style={styles.container}>
-                <Text> HaveRead Screen </Text>
+                {/* Have Read Books */}
                 <FlatList
                     data={this.state.dataSource}
-                    
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
                         return (

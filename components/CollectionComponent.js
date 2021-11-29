@@ -37,6 +37,18 @@ export default class CollectionComponent extends React.Component {
         console.disableYellowBox = true;
         return (
             <View style={styles.container}>
+
+                {/* Navigation Books & Collections*/}
+                <View style={styles.row}>
+                    <View style={styles.homebooks}>
+                        <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('HomePage')}>Books</Text>
+                    </View>
+                    <View style={styles.collectionbooks}>
+                        <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('Collections')}>Collections</Text>
+                    </View>
+                </View>
+
+                {/* New folder button */}
                     <TouchableOpacity onPress={onPress}>
                         <View style={styles.containerbutton}>
                             <View style={styles.button}>
@@ -44,6 +56,8 @@ export default class CollectionComponent extends React.Component {
                             </View>
                         </View>
                     </TouchableOpacity>
+
+                {/* Folders */}
                 <FlatList
                     numColumns={3}
                     data={this.state.dataSource}
@@ -68,6 +82,16 @@ export default class CollectionComponent extends React.Component {
 var styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#FFF',
+    },
+    row: {
+        flexDirection: 'row',
+    },
+    textStyle: {
+        padding: 5,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#E2454F',
     },
     containerfolders:{
         marginRight: 20,
@@ -91,7 +115,7 @@ var styles = StyleSheet.create({
         backgroundColor: '#E2454F',
         width: 150,
         height: 40,
-        marginTop: 10,
+        marginTop: 20,
         marginBottom: 10,
         marginLeft: 250,
         borderRadius: 10,
@@ -104,5 +128,21 @@ var styles = StyleSheet.create({
         fontFamily:'roboto',
         fontWeight: 'bold',
         color: '#fff',
+    },
+    collectionbooks:{
+        backgroundColor: 'white',
+        width: 210,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderTopLeftRadius: 10,
+    },
+    homebooks:{
+        backgroundColor: '#F5F5F5',
+        width: 210,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderBottomRightRadius: 10,
     },
 });

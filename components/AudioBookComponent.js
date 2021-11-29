@@ -45,10 +45,10 @@ export default class AudioBookComponent extends React.Component {
         console.disableYellowBox = true;
         return (
             <View style={styles.container}>
-                <Text> AudioBook Screen </Text>
+
+                {/* Audiobooks */}
                 <FlatList
                     data={this.state.dataSource}
-                    
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
                         return (

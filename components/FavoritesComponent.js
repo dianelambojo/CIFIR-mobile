@@ -43,10 +43,9 @@ export default class FavoritesComponent extends React.Component {
     render(){
         return (
             <View style={styles.container}>
-                <Text> Favorites Screen </Text>
+                {/* Favorite Books */}
                 <FlatList
                     data={this.state.dataSource}
-                    
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
                         return (

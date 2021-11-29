@@ -45,10 +45,9 @@ export default class ToReadComponent extends React.Component {
         console.disableYellowBox = true;
         return (
             <View style={styles.container}>
-                <Text> ToRead Screen </Text>
+                {/*To Read Books */}
                 <FlatList
                     data={this.state.dataSource}
-                    
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
                         return (
