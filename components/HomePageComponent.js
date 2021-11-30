@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Dimensions, TouchableOpacity, Platform, StyleSheet, Pressable, Button, SafeAreaView,Image, ScrollView } from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { COLORS, FONTS, SIZES, icons, images } from '../constants';
 
 const {width,height}= Dimensions.get("window");
 
@@ -20,37 +21,37 @@ export default class HomePageComponent extends React.Component {
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img: require('../assets/book1cover.jpg'),
+                img: images.orvCover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img:require('../assets/book1cover.jpg'),
+                img: images.orvCover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img:require('../assets/book1cover.jpg'),
+                img: images.orvCover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img:require('../assets/book1cover.jpg'),
+                img: images.orvCover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img:require('../assets/book1cover.jpg'),
+                img: images.orvCover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img:require('../assets/book1cover.jpg'),
+                img: images.orvCover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             }
 
@@ -84,7 +85,7 @@ export default class HomePageComponent extends React.Component {
                 
                 {/* My Library */}
                     <View>
-                        <Text style={styles.mylibraryText}>My Library</Text>
+                        <Text style={styles.mylibraryText}>Recently Read</Text>
                     </View>
                     <ScrollView>
                     <FlatList

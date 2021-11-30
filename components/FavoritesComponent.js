@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Platform, StyleSheet, Image, Pressable, D
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {FlatList} from 'react-native-gesture-handler';
 const {width,height}= Dimensions.get("window");
+import { COLORS, FONTS, SIZES, icons, images } from '../constants';
 
 export default class FavoritesComponent extends React.Component {
     constructor(){
@@ -19,13 +20,13 @@ export default class FavoritesComponent extends React.Component {
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img: require('../assets/book1cover.jpg'),
+                img: images.orvCover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img:require('../assets/book1cover.jpg'),
+                img: images.orvCover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
 
