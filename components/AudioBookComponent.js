@@ -4,6 +4,21 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {FlatList} from 'react-native-gesture-handler';
 const {width,height}= Dimensions.get("window");
 import { COLORS, FONTS, SIZES, icons, images } from '../constants';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+
+const RenderRight = (progress, dragX) =>{
+    const scale = dragX.interpolate({
+        inputRange:[-50,0.5],
+        outputRange:[1,0.1]
+    })
+
+
+    return(
+        <View style={styles.delButton}>
+            <FontAwesome name="trash" size={20} color={'#E2454F'}/>
+        </View>
+    );
+}
 
 export default class AudioBookComponent extends React.Component {
     constructor(){
@@ -46,36 +61,43 @@ export default class AudioBookComponent extends React.Component {
         console.disableYellowBox = true;
         return (
             <View style={styles.container}>
-
-                {/* Audiobooks */}
+                {/*To Read Books */}
                 <FlatList
                     data={this.state.dataSource}
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
+                        const deleteItem = () =>{
+                            alert('Item Will be deleted');
+                        }
                         return (
-                            <TouchableOpacity>
-                                <View style={styles.bookContainer}>
-                                    <Image style={styles.image}source={item.img}/>
-                                    <View style ={styles.dataContainer}>
-                                        <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
-                                        <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
-                                        <Text style={styles.author}>{item.author}</Text>
+                            <Swipeable overshootRight={false} onSwipeableRightOpen={deleteItem} renderRightActions={RenderRight}>
+                                <TouchableOpacity>
+                                    <View style={styles.bookContainer}>
+                                        <Image style={styles.image}source={item.img}/>
+                                        <View style ={styles.dataContainer}>
+                                            <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
+                                            <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
+                                            <Text style={styles.author}>{item.author}</Text>
+
+                                            <View style={styles.iconContainer}>
+                                                <FontAwesome name="play-circle" style={styles.icon} size={20}/> 
+                                            </View>    
+                                        </View>
                                     </View>
-                                </View>
-                            </TouchableOpacity>
+                                </TouchableOpacity>
+                            </Swipeable>
                         );
                     }}
                     />
             </View>
-            
         )
     }
 }
 
 var styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#FFF'
+      flex: 1,
+      backgroundColor: '#FFF'
     },
     row: {
         flexDirection: 'row',
@@ -113,4 +135,28 @@ var styles = StyleSheet.create({
     author:{
         fontSize: 16,
     },
+    delButton:{
+        backgroundColor:'#e5e5e5',
+        alignItems:"center",
+        justifyContent:"center",
+        width: 70,
+        height:185,
+    },
+    iconContainer:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'flex-end',
+        marginTop: 20,
+        marginLeft: 200,
+        borderRadius: 30,
+        height: 30,
+        width: 80,
+        backgroundColor: '#F0F0F0'
+    },
+    icon:{
+        marginHorizontal: 20,
+        marginTop: 5,
+        marginBottom: 5,
+        color: '#E2454F',
+    }
 });

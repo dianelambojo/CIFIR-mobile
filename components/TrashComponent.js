@@ -58,6 +58,10 @@ export default class TrashComponent extends React.Component {
                                         <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
                                         <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
                                         <Text style={styles.author}>{item.author}</Text>
+
+                                        <View style={styles.iconContainer}>
+                                            <FontAwesome name="undo" style={styles.icon} size={20}/> 
+                                        </View>
                                     </View>
                                 </View>
                             </TouchableOpacity>
@@ -111,4 +115,21 @@ var styles = StyleSheet.create({
     author:{
         fontSize: 16,
     },
+    iconContainer:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'flex-end',
+        marginTop: 20,
+        marginLeft: 200,
+        borderRadius: 30,
+        height: 30,
+        width: 80,
+        backgroundColor: '#F0F0F0'
+    },
+    icon:{
+        marginHorizontal: 20,
+        marginTop: 5,
+        marginBottom: 5,
+        color: '#E2454F',
+    }
 });

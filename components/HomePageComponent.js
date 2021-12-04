@@ -87,7 +87,7 @@ export default class HomePageComponent extends React.Component {
                     <View>
                         <Text style={styles.mylibraryText}>Recently Read</Text>
                     </View>
-                    <ScrollView>
+                    {/* <ScrollView> */}
                     <FlatList
                         style={styles.flatlistTop}
                         horizontal
@@ -96,7 +96,7 @@ export default class HomePageComponent extends React.Component {
                         
                         renderItem={({item,index}) =>{
                             return (
-                                <TouchableOpacity>
+                                    <TouchableOpacity>
                                     <View style={styles.bookContainer}>
                                         <Image style={styles.imageTop}source={item.img}/>
                                             {/* <View style ={styles.dataContainer}>
@@ -137,7 +137,7 @@ export default class HomePageComponent extends React.Component {
                             );
                         }}
                         />
-                </ScrollView>
+                {/* </ScrollView> */}
 
                 {/* Add button*/}
                 <TouchableOpacity style={styles.floatingActionButton}>
@@ -243,9 +243,11 @@ var styles = StyleSheet.create({
     },
     flatlistTop:{
         marginTop: 5,
+
     },
     flatlistBottom:{
         marginTop: 5,
-    }
+        height: 200,
+    },
 
 });

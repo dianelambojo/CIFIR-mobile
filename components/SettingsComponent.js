@@ -31,6 +31,20 @@ export default class SettingsComponent extends React.Component {
             <Image style={styles.avatar} source={require('../assets/icon.png')}/>
             <View style={styles.body}>
                 <View style={styles.bodyContent}>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.inputs}
+                            placeholder="Password"
+                            underlineColorAndroid='transparent'
+                            // onChangeText={(email) => this.setState({email})}
+                            />
+                </View>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.inputs}
+                            placeholder="New Password"
+                            underlineColorAndroid='transparent'
+                            // onChangeText={(email) => this.setState({email})}
+                            />
+                </View>
                 
                 <TouchableOpacity style={styles.buttonContainer}>
                     <Text>Change Password</Text>  
@@ -104,6 +118,34 @@ var styles = StyleSheet.create({
         marginBottom:20,
         width:250,
         borderRadius:30,
-        backgroundColor: "#00BFFF",
+        color:'white',
+        backgroundColor: "#B6B8B6",
+    },
+    inputContainer: {
+        borderBottomColor: '#F5FCFF',
+        backgroundColor: '#FFFFFF',
+        borderRadius:30,
+        borderBottomWidth: 1,
+        width:300,
+        height:45,
+        marginBottom:20,
+        flexDirection: 'row',
+        alignItems:'center',
+
+        shadowColor: "#808080",
+        shadowOffset: {
+        width: 0,
+        height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+    },
+    inputs:{
+        height:45,
+        marginLeft:16,
+        borderBottomColor: '#FFFFFF',
+        flex:1,
     },
 });
