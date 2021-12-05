@@ -66,7 +66,8 @@ export default class FavoritesComponent extends React.Component {
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
                         const deleteItem = () =>{
-                            alert('Item Will be deleted');
+
+                            // alert('Item Will be deleted');
                         }
                         return (
                             <Swipeable overshootRight={false} onSwipeableRightOpen={deleteItem} renderRightActions={RenderRight}>
@@ -116,8 +117,10 @@ var styles = StyleSheet.create({
         padding: 5,
     },
     image: {
-        width: 90,
-        height: 150,
+        width: 100,
+        height: 180,
+        borderRadius: 5,
+        resizeMode: 'cover',
     },
     dataContainer:{
         padding: 10,
@@ -141,14 +144,14 @@ var styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         width: 70,
-        height:185,
+        height:200,
     },
     iconContainer:{
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'flex-end',
         marginTop: 20,
-        marginLeft: 100,
+        marginLeft: 70,
         borderRadius: 30,
         height: 30,
         width:200,

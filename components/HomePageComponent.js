@@ -27,19 +27,19 @@ export default class HomePageComponent extends React.Component {
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img: images.orvCover,
+                img: images.alicecover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img: images.orvCover,
+                img: images.carolcover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
                 name: "Omniscient Reader's  Viewpoint",
                 author: "Sing Shong",
-                img: images.orvCover,
+                img: images.paintingcover,
                 description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
             },
             {
@@ -71,7 +71,7 @@ export default class HomePageComponent extends React.Component {
     render(){
         console.disableYellowBox = true;
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
 
                 {/* Navigation Books & Collections*/}
                 <View style={styles.row}>
@@ -87,7 +87,6 @@ export default class HomePageComponent extends React.Component {
                     <View>
                         <Text style={styles.mylibraryText}>Recently Read</Text>
                     </View>
-                    {/* <ScrollView> */}
                     <FlatList
                         style={styles.flatlistTop}
                         horizontal
@@ -137,13 +136,13 @@ export default class HomePageComponent extends React.Component {
                             );
                         }}
                         />
-                {/* </ScrollView> */}
 
-                {/* Add button*/}
-                <TouchableOpacity style={styles.floatingActionButton}>
-                    <FontAwesome name="plus" style={styles.icon} size={20}/>
-                </TouchableOpacity>
-            </View>
+                    {/* Add button*/}
+                    <TouchableOpacity style={styles.floatingActionButton}>
+                        <FontAwesome name="plus" style={styles.icon} size={20}/>
+                    </TouchableOpacity>
+                
+            </SafeAreaView>
             
         )
     }
@@ -235,7 +234,6 @@ var styles = StyleSheet.create({
         color: '#1B2F4B',
     },
     recentlyaddedText:{
-        paddingTop: 15,
         paddingLeft: 15,
         fontSize: 16,
         fontWeight: 'bold',
@@ -247,7 +245,7 @@ var styles = StyleSheet.create({
     },
     flatlistBottom:{
         marginTop: 5,
-        height: 200,
+        height: 320,
     },
 
 });

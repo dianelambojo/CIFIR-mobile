@@ -52,7 +52,7 @@ export default class CollectionComponent extends React.Component {
                     <TouchableOpacity onPress={onPress}>
                         <View style={styles.containerbutton}>
                             <View style={styles.button}>
-                                <Text style={styles.collectiontext}>New folder   <FontAwesome name="plus" style={styles.icon} size={14}/> </Text>
+                                <Text style={styles.collectiontext}>New folder  <FontAwesome name="plus" style={styles.icon} size={14} /> </Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -113,7 +113,7 @@ var styles = StyleSheet.create({
     },
     containerbutton:{
         backgroundColor: '#E2454F',
-        width: 150,
+        width: 130,
         height: 40,
         marginTop: 20,
         marginBottom: 10,

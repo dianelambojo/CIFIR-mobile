@@ -14,9 +14,11 @@ const RenderRight = (progress, dragX) =>{
 
 
     return(
-        <View style={styles.delButton}>
-            <FontAwesome name="trash" size={20} color={'#E2454F'}/>
-        </View>
+        <TouchableOpacity>
+            <View style={styles.delButton}>
+                <FontAwesome name="trash" size={20} color={'#E2454F'}/>
+            </View>
+        </TouchableOpacity>
     );
 }
 
@@ -67,7 +69,7 @@ export default class AudioBookComponent extends React.Component {
                     ItemSeparatorComponent = {() => this.separator()}
                     renderItem={({item,index}) =>{
                         const deleteItem = () =>{
-                            alert('Item Will be deleted');
+                            // alert('Item Will be deleted');
                         }
                         return (
                             <Swipeable overshootRight={false} onSwipeableRightOpen={deleteItem} renderRightActions={RenderRight}>
@@ -78,10 +80,12 @@ export default class AudioBookComponent extends React.Component {
                                             <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
                                             <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
                                             <Text style={styles.author}>{item.author}</Text>
-
-                                            <View style={styles.iconContainer}>
-                                                <FontAwesome name="play-circle" style={styles.icon} size={20}/> 
-                                            </View>    
+                                            <TouchableOpacity>
+                                                <View style={styles.iconContainer}>
+                                                    <FontAwesome name="play-circle" style={styles.icon} size={20}/> 
+                                                </View>    
+                                            </TouchableOpacity>
+                                            
                                         </View>
                                     </View>
                                 </TouchableOpacity>
@@ -96,8 +100,8 @@ export default class AudioBookComponent extends React.Component {
 
 var styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#FFF'
+        flex: 1,
+        backgroundColor: '#FFF'
     },
     row: {
         flexDirection: 'row',
@@ -115,8 +119,10 @@ var styles = StyleSheet.create({
         padding: 5,
     },
     image: {
-        width: 90,
-        height: 150,
+        width: 100,
+        height: 180,
+        borderRadius: 5,
+        resizeMode: 'cover',
     },
     dataContainer:{
         padding: 10,
@@ -140,14 +146,14 @@ var styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         width: 70,
-        height:185,
+        height:200,
     },
     iconContainer:{
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'flex-end',
         marginTop: 20,
-        marginLeft: 200,
+        marginLeft: 180,
         borderRadius: 30,
         height: 30,
         width: 80,
