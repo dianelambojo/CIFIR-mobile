@@ -15,16 +15,12 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {DrawerActions } from '@react-navigation/native';
-
-import { useNavigation } from 'react-navigation-hooks';
-import { withNavigation } from 'react-navigation';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 export default class HeaderMenu extends React.Component{
-    constructor(props, {navigation}){
+    constructor(props){
         super(props);
 
         //state

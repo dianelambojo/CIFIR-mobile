@@ -3,6 +3,8 @@ import * as pageComponent from '../components/index.js';
 import HeaderMenu from '../shared/headerMenu';
 import React from 'react';
 
+import Site from '../function/Site';
+
 //creating the screens for stack navigator
 const homeScreen = {
     HomePage: {
@@ -41,6 +43,12 @@ const networkLibraryScreen = {
             return {
                 headerTitle: () => <HeaderMenu navigation={navigation}  title="Network Library"/>
             }
+        }
+    },
+    Site: {
+        screen: Site,
+        navigationOptions: {
+            headerTitle: "Network Library"
         }
     }
 }
@@ -104,6 +112,17 @@ const sendFeedbackScreen = {
         }
     }
 }
+
+/*const siteScreen = {
+    Site: {
+        screen: Site,
+        navigationOptions: ({ navigation }) => {
+            return {
+                headerTitle: () => <HeaderMenu navigation={navigation} title="Network Library"/>
+            }
+        }
+    }
+}*/
 
 //creating Stack Navigators
 const HomeStackNavigator = createStackNavigator(homeScreen, {
@@ -217,6 +236,18 @@ const SendFeedbackStackNavigator = createStackNavigator(sendFeedbackScreen, {
         },
     }
 });
+
+/*const SiteStackNavigator = createStackNavigator(siteScreen, {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: '#E2454F'
+        },
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            color: 'white'
+        },
+    }
+});*/
 
 export {
     HomeStackNavigator,

@@ -30,7 +30,9 @@ import { AuthContext } from './components/context';
 import AsyncStorage  from '@react-native-async-storage/async-storage';
 
 import RootStack from './components/RootStack';
-import RootDrawerStack from './drawer/RootDrawerStack';
+import RootDrawerStack from './drawer/RootDrawerStack'; 
+
+import NetworkComponent from './components/NetworkLibraryComponent';
 
 const App = () => {
   // const [isLoading, setIsLoading] = React.useState(true);
@@ -132,8 +134,9 @@ const App = () => {
       <RootDrawerStack> </RootDrawerStack>
     )
     :
-    <RootStack> </RootStack>
-    //<RootDrawerStack> </RootDrawerStack>
+    //<RootStack> </RootStack>
+    //<NetworkComponent> </NetworkComponent>
+    <RootDrawerStack> </RootDrawerStack>
     }
 
     
