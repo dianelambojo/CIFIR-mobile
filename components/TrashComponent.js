@@ -95,8 +95,10 @@ var styles = StyleSheet.create({
         padding: 5,
     },
     image: {
-        width: 90,
-        height: 150,
+        width: 100,
+        height: 180,
+        borderRadius: 5,
+        resizeMode: 'cover',
     },
     dataContainer:{
         padding: 10,

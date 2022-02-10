@@ -31,7 +31,9 @@ import AsyncStorage  from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 import RootStack from './components/RootStack';
-import RootDrawerStack from './drawer/RootDrawerStack';
+import RootDrawerStack from './drawer/RootDrawerStack'; 
+
+import NetworkComponent from './components/NetworkLibraryComponent';
 
 import ComponentStack from './drawer/ComponentStack';
 
@@ -145,7 +147,9 @@ const App = () => {
 
     )
     :
-    <RootStack> </RootStack>
+    //<RootStack> </RootStack>
+    //<NetworkComponent> </NetworkComponent>
+    <RootDrawerStack> </RootDrawerStack>
     }
 
     

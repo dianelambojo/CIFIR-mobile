@@ -3,13 +3,15 @@ import * as pageComponent from '../components/index.js';
 import HeaderMenu from '../shared/headerMenu';
 import React from 'react';
 
+import Site from '../function/Site';
+
 //creating the screens for stack navigator
 const homeScreen = {
     HomePage: {
         screen: pageComponent.HomePageComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation} title="Library"/>
             }
         }
     }
@@ -19,7 +21,7 @@ const collectionScreen = {
         screen: pageComponent.CollectionComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation}  title="Collections"/>
             }
         }
     }
@@ -30,67 +32,73 @@ const networkLibraryScreen = {
         screen: pageComponent.NetworkLibraryComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation}  title="Network Library"/>
             }
+        }
+    },
+    Site: {
+        screen: Site,
+        navigationOptions: {
+            headerTitle: "Network Library"
         }
     }
 }
 const favoritesScreen = {
-    NetworkLibrary: {
+    Favorites: {
         screen: pageComponent.FavoritesComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation}  title="Favorites"/>
             }
         }
     }
 }
 const toReadScreen = {
-    NetworkLibrary: {
+    ToRead: {
         screen: pageComponent.ToReadComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation}  title="To Read"/>
             }
         }
     }
 }
 const haveReadScreen = {
-    NetworkLibrary: {
+    HaveRead: {
         screen: pageComponent.HaveReadComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation} title="Have Read"/>
             }
         }
     }
 }
 const trashScreen = {
-    NetworkLibrary: {
+    TrashComponent: {
         screen: pageComponent.TrashComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation} title="Trash"/>
             }
         }
     }
 }
 const settingsScreen = {
-    NetworkLibrary: {
+    Settings: {
         screen: pageComponent.SettingsComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation} title="Settings"/>
             }
         }
     }
 }
 const sendFeedbackScreen = {
-    NetworkLibrary: {
+    SendFeedback: {
         screen: pageComponent.SendFeedbackComponent,
         navigationOptions: ({ navigation }) => {
             return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
+                headerTitle: () => <HeaderMenu navigation={navigation} title="Send Feedback"/>
             }
         }
     }
@@ -119,6 +127,7 @@ const collectionBookScreen = {
         }
     }
 }
+
 
 //creating Stack Navigators
 const HomeStackNavigator = createStackNavigator(homeScreen, {
@@ -163,7 +172,7 @@ const FavoritesStackNavigator = createStackNavigator(favoritesScreen, {
         },
         headerTitleStyle: {
             fontWeight: 'bold',
-            color: 'white'
+            color: 'white',
         },
     }
 });
@@ -246,6 +255,18 @@ const CollectionBookStackNavigator = createStackNavigator(collectionBookScreen, 
         },
     }
 });
+
+/*const SiteStackNavigator = createStackNavigator(siteScreen, {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: '#E2454F'
+        },
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            color: 'white'
+        },
+    }
+});*/
 
 export {
     HomeStackNavigator,

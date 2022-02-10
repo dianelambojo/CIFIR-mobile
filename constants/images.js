@@ -1,5 +1,15 @@
+
 export const orvCover = require("../assets/images/cover.png");
+export const aliceCover = require("../assets/images/alicecover.jpg");
+export const carolCover = require("../assets/images/carolcover.jpg");
+export const paintingCover = require("../assets/images/paintingcover.jpg");
+export const swayCover = require("../assets/images/swaycover.jpg");
+
 
 export default {
-    orvCover
+    orvCover,
+    aliceCover,
+    carolCover,
+    paintingCover,
+    swayCover
 }
