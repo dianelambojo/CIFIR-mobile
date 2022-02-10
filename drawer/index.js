@@ -10,6 +10,10 @@ import TrashStack from './TrashStack';
 import SendFeedbackStack from './SendFeedbackStack';
 //import FileStack from './FileStack';
 
+import CreateCollectionStack from './CreateCollectionStack';
+
+import CollectionBookStack from './CollectionBookStack';
+
 export {
     HomePageStack,
     CollectionStack,
@@ -21,4 +25,7 @@ export {
     SettingStack,
     TrashStack,
     SendFeedbackStack,
+    CreateCollectionStack,
+    CollectionBookStack
+    
 }

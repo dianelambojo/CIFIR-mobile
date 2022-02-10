@@ -1,85 +1,69 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { View, Text, Dimensions, TouchableOpacity, Platform, StyleSheet, Pressable, Button, SafeAreaView,Image, ScrollView } from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { COLORS, FONTS, SIZES, icons, images } from '../constants';
 
+
+import AsyncStorage  from '@react-native-async-storage/async-storage';
+
+
 const {width,height}= Dimensions.get("window");
 
-export default class HomePageComponent extends React.Component {
-    constructor(){
-        super();
-        this.state={
-            query: null,
-            dataSource:[],
-            dataBackup:[]
-        };
-    }
 
-    componentDidMount(){
-        var data=[
-            {
-                name: "Omniscient Reader's  Viewpoint",
-                author: "Sing Shong",
-                img: images.orvCover,
-                description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
-            },
-            {
-                name: "Omniscient Reader's  Viewpoint",
-                author: "Sing Shong",
-                img: images.orvCover,
-                description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
-            },
-            {
-                name: "Omniscient Reader's  Viewpoint",
-                author: "Sing Shong",
-                img: images.orvCover,
-                description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
-            },
-            {
-                name: "Omniscient Reader's  Viewpoint",
-                author: "Sing Shong",
-                img: images.orvCover,
-                description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
-            },
-            {
-                name: "Omniscient Reader's  Viewpoint",
-                author: "Sing Shong",
-                img: images.orvCover,
-                description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
-            },
-            {
-                name: "Omniscient Reader's  Viewpoint",
-                author: "Sing Shong",
-                img: images.orvCover,
-                description: "Kim Dokja does not consider himself the protagonist of his own life. Befitting the name his parents gave him, he is a solitary person whose sole hobby is reading web novels. For over a decade, he has lived vicariously through Yu Junghyeok, the main character of the web novel Three Ways to Survive the Apocalypse (TWSA). Through Junghyeok, Dokja has experienced secondhand the trials of repeatedly regressing in time, in search of an end to life-threatening scenarios that force people to act out narratives for the amusement of god-like Constellations."
+export const HomePageComponent = ({ navigation }) =>  {
+    
+    const [data, setData] = useState([{
+                            title: 'Title',
+                            id: 'id',
+                            img: images.orvCover,
+                            book_author: 'Author',
+                            file: '',
+                        }])
+    const [loading, setLoading] = useState(true)
+
+    const loadData = async() => {
+        const userToken = await AsyncStorage.getItem('userToken');
+        fetch('http://192.168.1.15:8000/api/books/', {
+            method: "GET",
+            headers: {
+                'Authorization': 'Token ' + userToken
             }
-
-        ];
-        this.setState({
-            dataBackup: data,
-            dataSource:data
         })
+
+        .then(res => res.json())
+        .then(data => {
+            setData(data)
+            setLoading(false)
+        })
+        .catch(error => console.log("error"))
     }
 
-    separator = () => {
+    useEffect(() => {
+        
+        loadData()
+     
+    }, []);
+
+
+
+    const separator = () => {
         return (
             <View style={{height:10, width:'100%', backgroundColor: '#e5e5e5'}}></View>
         )
     }
 
-    render(){
-        console.disableYellowBox = true;
+  
         return (
             <View style={styles.container}>
 
                 {/* Navigation Books & Collections*/}
                 <View style={styles.row}>
                     <View style={styles.homebooks}>
-                        <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('HomePage')}>Books</Text>
+                        <Text style={styles.textStyle} onPress={ ()=>navigation.navigate('HomePage')}>Books</Text>
                     </View>
                     <View style={styles.collectionbooks}>
-                        <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('Collections')}>Collections</Text>
+                        <Text style={styles.textStyle} onPress={ ()=> navigation.navigate('Collections')}>Collections</Text>
                     </View>
                 </View>
                 
@@ -92,13 +76,16 @@ export default class HomePageComponent extends React.Component {
                         style={styles.flatlistTop}
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        data={this.state.dataSource}
+                        data={data}
+                        keyExtractor={(item) => item.id}
+                        onRefresh = { () => loadData()}
+                        refreshing = {loading}
                         
-                        renderItem={({item,index}) =>{
+                        renderItem={({item}) =>{
                             return (
                                     <TouchableOpacity>
                                     <View style={styles.bookContainer}>
-                                        <Image style={styles.imageTop}source={item.img}/>
+                                        <Image style={styles.imageTop}source={images.orvCover}/>
                                             {/* <View style ={styles.dataContainer}>
                                                 <Image style={styles.image}source={item.img}/>
                                                 <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
@@ -120,17 +107,22 @@ export default class HomePageComponent extends React.Component {
 
                         <FlatList
                         style={styles.flatlistBottom}
-                        data={this.state.dataSource}
-                        ItemSeparatorComponent = {() => this.separator()}
-                        renderItem={({item,index}) =>{
+                        data={data}
+                        keyExtractor={(item) => item.id}
+                        ItemSeparatorComponent = {() => separator()}
+
+                        onRefresh = { () => loadData()}
+                        refreshing = {loading}
+
+                        renderItem={({item}) =>{
                             return (
                                 <TouchableOpacity>
                                     <View style={styles.bookContainer}>
-                                        <Image style={styles.imageBottom}source={item.img}/>
+                                        <Image style={styles.imageBottom}source={images.orvCover}/>
                                         <View style ={styles.dataContainer}>
-                                            <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
-                                            <Text numberOfLines={4} style={styles.description}>{item.description}</Text>
-                                            <Text style={styles.author}>{item.author}</Text>
+                                            <Text numberOfLines={1} style={styles.title}>{item.title}</Text>
+                                            {/* <Text numberOfLines={4} style={styles.description}>{item.book_author}</Text> */}
+                                            <Text style={styles.author}>{item.book_author}</Text>
                                         </View>
                                     </View>
                                 </TouchableOpacity>
@@ -146,8 +138,8 @@ export default class HomePageComponent extends React.Component {
             </View>
             
         )
-    }
 }
+export default HomePageComponent;
 
 var styles = StyleSheet.create({
     container: {
@@ -195,6 +187,7 @@ var styles = StyleSheet.create({
         color : 'gray',
     },
     author:{
+        color: 'gray',
         fontSize: 16,
     },
     floatingActionButton:{

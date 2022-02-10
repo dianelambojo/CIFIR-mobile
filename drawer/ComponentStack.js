@@ -24,16 +24,7 @@ const collectionScreen = {
         }
     }
 }
-const audiobookScreen = {
-    AudioBook: {
-        screen: pageComponent.AudioBookComponent,
-        navigationOptions: ({ navigation }) => {
-            return {
-                headerTitle: () => <HeaderMenu navigation={navigation} />
-            }
-        }
-    }
-}
+
 const networkLibraryScreen = {
     NetworkLibrary: {
         screen: pageComponent.NetworkLibraryComponent,
@@ -105,6 +96,30 @@ const sendFeedbackScreen = {
     }
 }
 
+//create collection
+const createCollectionScreen = {
+    CreateCollection: {
+        screen: pageComponent.CreateCollectionComponent,
+        navigationOptions: ({ navigation }) => {
+            return {
+                headerTitle: () => <HeaderMenu navigation={navigation} />
+            }
+        }
+    }
+}
+
+//collectionbooks
+const collectionBookScreen = {
+    CollectionBook: {
+        screen: pageComponent.CollectionBooksComponent,
+        navigationOptions: ({ navigation }) => {
+            return {
+                headerTitle: () => <HeaderMenu navigation={navigation} />
+            }
+        }
+    }
+}
+
 //creating Stack Navigators
 const HomeStackNavigator = createStackNavigator(homeScreen, {
     defaultNavigationOptions: {
@@ -129,17 +144,7 @@ const CollectionStackNavigator = createStackNavigator(collectionScreen, {
         },
     }
 });
-const AudioBookStackNavigator = createStackNavigator(audiobookScreen, {
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: '#E2454F'
-        },
-        headerTitleStyle: {
-            fontWeight: 'bold',
-            color: 'white'
-        },
-    }
-});
+
 const NetworkLibraryStackNavigator = createStackNavigator(networkLibraryScreen, {
     defaultNavigationOptions: {
         headerStyle: {
@@ -218,10 +223,33 @@ const SendFeedbackStackNavigator = createStackNavigator(sendFeedbackScreen, {
     }
 });
 
+const CreateCollectionStackNavigator = createStackNavigator(createCollectionScreen, {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: '#E2454F'
+        },
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            color: 'white'
+        },
+    }
+});
+
+const CollectionBookStackNavigator = createStackNavigator(collectionBookScreen, {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: '#E2454F'
+        },
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            color: 'white'
+        },
+    }
+});
+
 export {
     HomeStackNavigator,
     CollectionStackNavigator,
-    AudioBookStackNavigator,
     NetworkLibraryStackNavigator,
     FavoritesStackNavigator,
     ToReadStackNavigator,
@@ -229,4 +257,6 @@ export {
     TrashStackNavigator,
     SettingsStackNavigator,
     SendFeedbackStackNavigator,
+    CreateCollectionStackNavigator,
+    CollectionBookStackNavigator
 }

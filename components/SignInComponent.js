@@ -14,9 +14,13 @@ import {LinearGradient} from 'expo-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
+
+
 import { AuthContext } from './context';
 
 import Users from './users';
+
+import axios from 'axios';
 
 const SignInComponent = () => {
 
@@ -52,7 +56,7 @@ const SignInComponent = () => {
     }
 
     const handlePasswordChange = (val) => {
-        if( val.trim().length >= 8 ) {
+        if( val.trim().length >= 6 ) {
             setData({
                 ...data,
                 password: val,
@@ -90,24 +94,42 @@ const SignInComponent = () => {
     }
 
     const loginHandle = (userName, password) => {
-        const foundUser = Users.filter( item => {
-            return userName == item.email && password == item.password;
-        });
+        // const foundUser = Users.filter( item => {
+        //     return userName == item.email && password == item.password;
+        // });
 
-        if ( data.username.length == 0 || data.password.length == 0 ) {
-            Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
-                {text: 'Okay'}
-            ]);
-            return;
-        }
+        // if ( data.username.length == 0 || data.password.length == 0 ) {
+        //     Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+        //         {text: 'Okay'}
+        //     ]);
+        //     return;
+        // }
 
-        if ( foundUser.length == 0 ) {
-            Alert.alert('Invalid User!', 'Username or password is incorrect.', [
-                {text: 'Okay'}
-            ]);
-            return;
-        }
-        signIn(foundUser);
+        // if ( foundUser.length == 0 ) {
+        //     Alert.alert('Invalid User!', 'Username or password is incorrect.', [
+        //         {text: 'Okay'}
+        //     ]);
+        //     return;
+        // }
+        // signIn(foundUser);
+
+        const endpoint = 'login';
+        const payload = { username: userName, password: password } 
+        
+        axios
+        .post(`http:/192.168.1.15:8000/api/auth/login/`, payload)
+        .then(response => {
+            const { token, user } = response.data;
+    
+            // We set the returned token as the default authorization header
+            //axios.defaults.headers.common.Authorization = `Token ${token}`;
+
+            //send token & username 
+            signIn(token, userName);
+        })
+        .catch(error => console.log(error));
+        // signIn(username, password);
+        
     }
         return (
             <View style={styles.container}>

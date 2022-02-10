@@ -1,6 +1,5 @@
 import HomePageComponent from './HomePageComponent';
 import CollectionComponent from './CollectionComponent';
-import AudioBookComponent from './AudioBookComponent';
 import NetworkLibraryComponent from './NetworkLibraryComponent';
 import FavoritesComponent from './FavoritesComponent';
 import ToReadComponent from './ToReadComponent';
@@ -10,10 +9,13 @@ import TrashComponent from './TrashComponent';
 import SendFeedbackComponent from './SendFeedbackComponent';
 //import FileComponent from './FileComponent';
 
+import CreateCollectionComponent from './CreateCollectionComponent';
+
+import  CollectionBooksComponent  from './CollectionBooksComponents';
+
 export {
     HomePageComponent,
     CollectionComponent,
-    AudioBookComponent,
     NetworkLibraryComponent,
     FavoritesComponent,
     ToReadComponent,
@@ -21,4 +23,6 @@ export {
     SettingsComponent,
     TrashComponent,
     SendFeedbackComponent,
+    CreateCollectionComponent,
+    CollectionBooksComponent,
 }

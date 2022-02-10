@@ -1,58 +1,63 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Platform, StyleSheet, Image, Pressable, Dimensions, Button,onPress} from 'react-native';
+import React, { useState, useEffect}  from 'react';
+import { View, Text, TouchableOpacity, Platform, StyleSheet, Image, Pressable, Dimensions, Button,onPress, RefreshControl} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {FlatList} from 'react-native-gesture-handler';
+import AsyncStorage  from '@react-native-async-storage/async-storage';
 
+export const CollectionComponent = ({ navigation }) =>  {
+  
+    const [data, setData] = useState([{
+        name: 'Collection',
+        id: 'id'
+    }])
 
-export default class CollectionComponent extends React.Component {
-    constructor(){
-        super();
-        this.state={
-            query: null,
-            dataSource:[],
-            dataBackup:[]
-        };
-    }
+    const [loading, setLoading] = useState(true)
+    
 
-    componentDidMount(){
-        var data=[
-            {
-                name: "Folder 1"
-            },
-            {
-                name: "Folder 2"
-            },
-            {
-                name: "Folder 3"
-            },
-
-
-        ];
-        this.setState({
-            dataBackup: data,
-            dataSource:data
+    const loadData = async() => {
+        const userToken = await AsyncStorage.getItem('userToken');
+        fetch('http://192.168.1.15:8000/api/collections/', {
+            method: "GET",
+            headers: {
+                'Authorization': 'Token ' + userToken
+            }
         })
+
+        .then(res => res.json())
+        .then(data => {
+            setData(data)
+            setLoading(false)
+        })
+        .catch(error => console.log("col error"))
     }
-    render(){
-        console.disableYellowBox = true;
+
+    useEffect(() => {
+        
+        loadData()
+     
+    }, []);
+
+    const clickedItem = (data) => {
+        navigation.navigate("CollectionBook", {data:data})
+    }
         return (
             <View style={styles.container}>
 
                 {/* Navigation Books & Collections*/}
                 <View style={styles.row}>
                     <View style={styles.homebooks}>
-                        <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('HomePage')}>Books</Text>
+                        <Text style={styles.textStyle} onPress={()=>navigation.navigate('HomePage')}>Books</Text>
                     </View>
                     <View style={styles.collectionbooks}>
-                        <Text style={styles.textStyle} onPress={()=>this.props.navigation.navigate('Collections')}>Collections</Text>
+                        <Text style={styles.textStyle} onPress={()=>navigation.navigate('Collections')}>Collections</Text>
                     </View>
                 </View>
 
                 {/* New folder button */}
-                    <TouchableOpacity onPress={onPress}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('CreateCollection')}>
                         <View style={styles.containerbutton}>
                             <View style={styles.button}>
-                                <Text style={styles.collectiontext}>New folder   <FontAwesome name="plus" style={styles.icon} size={14}/> </Text>
+                                <Text style={styles.collectiontext}>New folder   <FontAwesome name="plus" style={styles.icon} size={14} /> </Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -60,10 +65,18 @@ export default class CollectionComponent extends React.Component {
                 {/* Folders */}
                 <FlatList
                     numColumns={3}
-                    data={this.state.dataSource}
+                    data={data}
+                    keyExtractor={item => `${item.id}`}
+                    refreshControl={
+                    <RefreshControl
+                        onRefresh = { () => loadData()}
+                        refreshing = {loading}
+                        />
+                    }
+                    
                     renderItem={({item,index}) =>{
                         return (
-                                <TouchableOpacity onPress={onPress}>
+                                <TouchableOpacity onPress={() => clickedItem(item)}>
                                     <View style={styles.containerfolders}>
                                             <FontAwesome name="folder" style={styles.folder} size={80}/> 
                                             <Text styles={styles.foldertitle} numberOfLines={1}>{item.name}</Text>
@@ -76,8 +89,9 @@ export default class CollectionComponent extends React.Component {
             </View>
             
         )
-    }
 }
+
+export default CollectionComponent;
 
 var styles = StyleSheet.create({
     container: {
@@ -125,7 +139,6 @@ var styles = StyleSheet.create({
     collectiontext:{
         textAlign: 'center',
         fontSize: 14,
-        fontFamily:'roboto',
         fontWeight: 'bold',
         color: '#fff',
     },

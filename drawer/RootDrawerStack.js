@@ -27,16 +27,7 @@ const RootDrawerNavigation = createDrawerNavigator({
             ),
         },
       },
-      Audiobooks: {
-          screen: pageComponentStack.AudioBookStackNavigator,
-          navigationOptions: {
-            drawerIcon: (
-              <Icon reverseColor name='file-audio-o' type='font-awesome' 
-              style={{ color: '#E2454F' }}
-              size={20}/>
-            ),
-        },
-      },
+     
       NetworkLibraries: {
           screen: pageComponentStack.NetworkLibraryStackNavigator,
           navigationOptions: {
@@ -111,6 +102,18 @@ const RootDrawerNavigation = createDrawerNavigator({
             ),
         },
       },
+      CreateCollection: {
+        screen: pageComponentStack.CreateCollectionStackNavigator,
+        navigationOptions: {
+          drawerLabel: () => null
+      },
+    },
+    CollectionBook: {
+      screen: pageComponentStack.CollectionBookStackNavigator,
+      navigationOptions: {
+        drawerLabel: () => null
+    },
+  },
 }, {
     contentComponent: SideMenuComponent,
     initialRouteName: "HomePage",

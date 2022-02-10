@@ -1,4 +1,4 @@
-export const orvCover = require("../assets/images/book1cover.jpg");
+export const orvCover = require("../assets/images/cover.png");
 
 export default {
     orvCover

@@ -28,13 +28,21 @@ import { display } from 'styled-system';
 import { AuthContext } from './components/context';
 
 import AsyncStorage  from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 import RootStack from './components/RootStack';
 import RootDrawerStack from './drawer/RootDrawerStack';
 
+import ComponentStack from './drawer/ComponentStack';
+
 const App = () => {
   // const [isLoading, setIsLoading] = React.useState(true);
   // const [userToken, setUserToken] = React.useState(null); 
+
+  componentWillMount = () => {
+    axios.defaults.baseURL = 'http://192.168.1.15:8000/api';
+    axios.defaults.timeout = 1500;
+  }
 
   const initialLoginState = {
     isLoading: true,
@@ -70,17 +78,19 @@ const App = () => {
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
 
   const authContext = React.useMemo(() => ({
-    signIn: async (foundUser) => {
+    signIn: async (token, userName) => {
       // setUserToken('fkjg');
       // setIsLoading(false);
       // FETCH THRU API CALL
       
-      const userToken = String(foundUser[0].userToken);
-      const userName = foundUser[0].email;
+      const userToken = String(token);//String(foundUser[0].userToken); 
+    
+      //const userName = userName;//foundUser[0].email;
 
       // if ( userName == 'user' && password == 'password') {
         try {
-          await AsyncStorage.setItem('userToken', userToken)
+          await AsyncStorage.setItem('userToken', userToken);
+          await AsyncStorage.setItem('user', userName);
         }
         catch(e) {
           console.log(e);
@@ -93,6 +103,8 @@ const App = () => {
       // setIsLoading(false);
       try {
         await AsyncStorage.removeItem('userToken')
+        await AsyncStorage.removeItem('user')
+
       }
       catch(e) {
         console.log(e);
@@ -129,7 +141,8 @@ const App = () => {
   return (
     <AuthContext.Provider value={authContext}>
     { loginState.userToken !== null ? ( 
-      <RootDrawerStack> </RootDrawerStack>
+       <RootDrawerStack>  </RootDrawerStack>  
+
     )
     :
     <RootStack> </RootStack>
