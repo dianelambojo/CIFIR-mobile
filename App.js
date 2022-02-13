@@ -31,18 +31,18 @@ import AsyncStorage  from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 import RootStack from './components/RootStack';
-import RootDrawerStack from './drawer/RootDrawerStack'; 
-
-import NetworkComponent from './components/NetworkLibraryComponent';
+import RootDrawerStack from './drawer/RootDrawerStack';
 
 import ComponentStack from './drawer/ComponentStack';
+
+import NetworkComponent from './components/NetworkLibraryComponent';
 
 const App = () => {
   // const [isLoading, setIsLoading] = React.useState(true);
   // const [userToken, setUserToken] = React.useState(null); 
 
   componentWillMount = () => {
-    axios.defaults.baseURL = 'http://192.168.1.15:8000/api';
+    axios.defaults.baseURL = 'http://192.168.1.12:8000/api';
     axios.defaults.timeout = 1500;
   }
 
@@ -147,9 +147,7 @@ const App = () => {
 
     )
     :
-    //<RootStack> </RootStack>
-    //<NetworkComponent> </NetworkComponent>
-    <RootDrawerStack> </RootDrawerStack>
+    <RootStack> </RootStack>
     }
 
     

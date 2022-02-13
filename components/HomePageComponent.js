@@ -24,7 +24,7 @@ export const HomePageComponent = ({ navigation }) =>  {
 
     const loadData = async() => {
         const userToken = await AsyncStorage.getItem('userToken');
-        fetch('http://192.168.1.15:8000/api/books/', {
+        fetch('http://192.168.1.12:8000/api/books/', {
             method: "GET",
             headers: {
                 'Authorization': 'Token ' + userToken

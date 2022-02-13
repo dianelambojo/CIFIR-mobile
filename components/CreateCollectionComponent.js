@@ -6,6 +6,7 @@ import AsyncStorage  from '@react-native-async-storage/async-storage';
 export const CreateCollectionComponent = () =>  {
 
     const [name, setName] = useState("")
+    const [ user, setUserID] = useState("")
     //const [id, setID] = useState("")
 
 
@@ -34,13 +35,13 @@ export const CreateCollectionComponent = () =>  {
         // console.log(name);
 
 
-        fetch('http://192.168.1.15/api/collections/', {
+        fetch('http://192.168.1.12:8000/api/collections/', {
             method: "POST",
             headers: {
                 'Authorization': 'Token ' + userToken,
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify({name:name})
+            body: JSON.stringify({name:name, user: user})
         })
 
         .then(res => res.json())
@@ -54,6 +55,15 @@ export const CreateCollectionComponent = () =>  {
         return (
             
             <View style={styles.inputStyle}>
+                <TextInput 
+                label ="User ID"
+                value = {user}
+                mode = 'outlined'
+                theme={{ colors: { primary: '#ED8854',underlineColor:'transparent',}}}
+                
+                onChangeText = {text => setUserID(text)} > 
+                
+                </TextInput>
                 <TextInput 
                 label ="Collection Name"
                 value = {name}

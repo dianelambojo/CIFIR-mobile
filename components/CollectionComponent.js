@@ -16,7 +16,7 @@ export const CollectionComponent = ({ navigation }) =>  {
 
     const loadData = async() => {
         const userToken = await AsyncStorage.getItem('userToken');
-        fetch('http://192.168.1.15:8000/api/collections/', {
+        fetch('http://192.168.1.12:8000/api/collections/', {
             method: "GET",
             headers: {
                 'Authorization': 'Token ' + userToken

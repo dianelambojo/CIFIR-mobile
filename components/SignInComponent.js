@@ -117,7 +117,7 @@ const SignInComponent = () => {
         const payload = { username: userName, password: password } 
         
         axios
-        .post(`http:/192.168.1.15:8000/api/auth/login/`, payload)
+        .post('http:/192.168.1.12:8000/api/auth/login/', payload)
         .then(response => {
             const { token, user } = response.data;
     

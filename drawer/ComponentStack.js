@@ -3,6 +3,8 @@ import * as pageComponent from '../components/index.js';
 import HeaderMenu from '../shared/headerMenu';
 import React from 'react';
 
+import Site from '../function/Site';
+
 //creating the screens for stack navigator
 const homeScreen = {
     HomePage: {
@@ -33,10 +35,16 @@ const networkLibraryScreen = {
                 headerTitle: () => <HeaderMenu navigation={navigation} />
             }
         }
+    },
+    Site: {
+        screen: Site,
+        navigationOptions: {
+            headerTitle: "Network Library"
+        }
     }
 }
 const favoritesScreen = {
-    NetworkLibrary: {
+    favorites: {
         screen: pageComponent.FavoritesComponent,
         navigationOptions: ({ navigation }) => {
             return {
@@ -46,7 +54,7 @@ const favoritesScreen = {
     }
 }
 const toReadScreen = {
-    NetworkLibrary: {
+    toRead: {
         screen: pageComponent.ToReadComponent,
         navigationOptions: ({ navigation }) => {
             return {
@@ -56,7 +64,7 @@ const toReadScreen = {
     }
 }
 const haveReadScreen = {
-    NetworkLibrary: {
+    haveRead: {
         screen: pageComponent.HaveReadComponent,
         navigationOptions: ({ navigation }) => {
             return {
@@ -66,7 +74,7 @@ const haveReadScreen = {
     }
 }
 const trashScreen = {
-    NetworkLibrary: {
+    trash: {
         screen: pageComponent.TrashComponent,
         navigationOptions: ({ navigation }) => {
             return {
@@ -76,7 +84,7 @@ const trashScreen = {
     }
 }
 const settingsScreen = {
-    NetworkLibrary: {
+    settings: {
         screen: pageComponent.SettingsComponent,
         navigationOptions: ({ navigation }) => {
             return {
